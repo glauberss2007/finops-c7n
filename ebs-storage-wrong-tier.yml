@@ -1,0 +1,17 @@
+policies:
+  - name: ec2-reserved-instances-optimization
+    resource: aws.ec2-reserved-instances
+    filters:
+      - type: value
+        key: Scope
+        value: "Availability Zone"  # Modify to desired optimization scope
+      - type: value
+        key: OfferingClass
+        value: "convertible"  # Modify to the specific Offering Class if necessary
+      - type: unused
+    actions:
+      - type: notify
+        template: default
+        priority_header: 1
+        subject: "Underutilized EC2 Reserved Instances Found"
+        violation_desc: "Reserved Instance {{ ReservedInstancesId }} is underutilized."
