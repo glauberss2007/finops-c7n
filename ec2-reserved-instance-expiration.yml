@@ -1,0 +1,14 @@
+policies:
+  - name: ec2-reserved-instance-expiration
+    resource: aws.ec2-reserved-instances
+    filters:
+      - type: value
+        key: End
+        op: less-than
+        value: "2024-01-01"  # Define the expiration date threshold
+    actions:
+      - type: notify
+        template: default
+        priority_header: 1
+        subject: "Expiring EC2 Reserved Instances Found"
+        violation_desc: "Reserved Instance {{ ReservedInstancesId }} expires soon."
