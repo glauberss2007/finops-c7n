@@ -1,0 +1,17 @@
+policies:
+  - name: instances-wrong-families
+    resource: aws.ec2
+    filters:
+      - type: value
+        key: InstanceType
+        op: not-in
+        value:
+          - t2.micro
+          - m5.large
+          # Add allowed instance families as needed
+    actions:
+      - type: notify
+        template: default
+        priority_header: 1
+        subject: "Instances with wrong families found"
+        violation_desc: "Instance {{ InstanceId }} belongs to an unapproved family: {{ InstanceType }}"
