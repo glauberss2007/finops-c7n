@@ -60,15 +60,6 @@ The CFN file create 1 Redshift instance with a SubnetGroup and 1 SNS to send def
 This policy checks if have some snapshot that with no associate with no one EC2
 There no CFN file, but you can use the "Underutilized Amazon EBS Volumes" template to create one and after create a snapshot
 
-## To Do
-
-- EBS storage on wrong tier
-- Instances with wrong families
-- Older Snapshots
-- Amazon Route 53 Latency Resource Record Sets
-- Amazon EC2 Reserved Instance Lease Expiration
-- Amazon EC2 Reserved Instances Optimization
-
 ## References
 
 Cloud Custodian: https://cloudcustodian.io/
