@@ -1,0 +1,12 @@
+policies:
+  - name: older-snapshots
+    resource: aws.snapshot
+    filters:
+      - type: age
+        days: 90  # Define the threshold for older snapshots
+    actions:
+      - type: notify
+        template: default
+        priority_header: 1
+        subject: "Older Snapshots Found"
+        violation_desc: "Snapshot {{ SnapshotId }} is older than 90 days."
