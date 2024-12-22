@@ -1,0 +1,26 @@
+policies:
+  - name: eks-underutilized-resources-7-day-avg
+    resource: k8s.pod
+    filters:
+      - type: metrics
+        name: cpu_utilization_over_pod_limit
+        metric: k8s.pod.cpu.utilization
+        op: less-than
+        value: 50
+        days: 7
+      - type: metrics
+        name: memory_utilization_over_pod_limit
+        metric: k8s.pod.memory.utilization
+        op: less-than
+        value: 50
+        days: 7
+    actions:
+      - type: notify
+        template: default
+        priority_header: '2'
+        subject: "EKS Resources Underutilized (7-day avg < 50% of limits)"
+        to:
+          - your-email@example.com
+        transport:
+          type: sns
+          topic: arn:aws:sns:us-east-1:123456789012:your-sns-topic
