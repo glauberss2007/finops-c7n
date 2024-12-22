@@ -60,6 +60,9 @@ The CFN file create 1 Redshift instance with a SubnetGroup and 1 SNS to send def
 This policy checks if have some snapshot that with no associate with no one EC2
 There no CFN file, but you can use the "Underutilized Amazon EBS Volumes" template to create one and after create a snapshot
 
+### Underutilized EKS Pod Resources
+This policy checks if you have EKS pods that are significantly underutilizing their allocated resources over a 7-day period. It identifies pods where both CPU and memory usage averages less than 50% of their configured limits.
+
 ## References
 
 Cloud Custodian: https://cloudcustodian.io/
